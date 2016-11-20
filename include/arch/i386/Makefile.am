@@ -18,6 +18,7 @@
 include $(top_srcdir)/env.am
 
 noinst_HEADERS = \
+	arch-bitops.h \
 	arch-boot.h \
 	arch-io.h \
 	arch-irq.h \
@@ -25,6 +26,8 @@ noinst_HEADERS = \
 	arch-sync.h \
 	arch-trap.h \
 	asm.h \
+	atomic.h \
+	context.h \
 	cr.h \
 	platform.h \
 	segment.h
