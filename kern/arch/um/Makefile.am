@@ -17,6 +17,15 @@
 
 include $(top_srcdir)/env.am
 
-SUBDIRS = $(ARCH)
-DIST_SUBDIRS = armv7a i386 mips um
+dist_noinst_DATA = vmaim.lds.S
+
+noinst_LTLIBRARIES = \
+	libarch.la libentry.la
+
+libarch_la_SOURCES = \
+    main.c
+    
+
+libentry_la_SOURCES = \
+    entry.c console.c arch_mmu.c
 

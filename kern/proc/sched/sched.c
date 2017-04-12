@@ -30,7 +30,7 @@
 #include <aim/smp.h>
 
 static lock_t sched_lock;
-static unsigned long __sched_intrflags;
+//static unsigned long __sched_intrflags;
 
 void sched_enter_critical(void)
 {
@@ -76,7 +76,7 @@ void schedule(void)
  */
 void sleep_with_lock(void *bed, lock_t *lock)
 {
-	unsigned long flags;
+//	unsigned long flags;
 	/* Basically, sleep is also a kind of scheduling, so we need to enter
 	 * critical section of scheduler as well. */
 	assert(lock != &sched_lock);
@@ -110,7 +110,7 @@ void sleep(void *bed)
 void wakeup(void *bed)
 {
 	struct proc *proc;
-	unsigned long flags;
+//	unsigned long flags;
 
 	/* We are changing process states.  It is better to enter critical
 	 * section. */

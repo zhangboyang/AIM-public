@@ -1,0 +1,10 @@
+#ifndef _PLATFORM_H
+#define _PLATFORM_H
+
+
+#define EARLY_CONSOLE_BUS	NULL
+#define EARLY_CONSOLE_BASE	0
+#define EARLY_CONSOLE_MAPPING	MAP_NONE
+
+#endif
+

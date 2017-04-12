@@ -253,6 +253,7 @@ AC_CONFIG_FILES([
 	include/arch/i386/Makefile
 	include/arch/mips/Makefile
 	include/arch/mips/mach-loongson3a/Makefile
+	include/arch/um/Makefile
 	include/asm-generic/Makefile
 	kern/Makefile
 	kern/arch/Makefile
@@ -260,6 +261,7 @@ AC_CONFIG_FILES([
 	kern/arch/i386/Makefile
 	kern/arch/i386/mach-pc/Makefile
 	kern/arch/mips/Makefile
+	kern/arch/um/Makefile
 	kern/dev/Makefile
 	kern/dev/index/Makefile
 	kern/init/Makefile
