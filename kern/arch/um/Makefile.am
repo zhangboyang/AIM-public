@@ -24,7 +24,7 @@ noinst_LTLIBRARIES = \
 
 libarch_la_SOURCES = \
     main.c
-    
+libarch_la_CPPFLAGS = 
 
 libentry_la_SOURCES = \
     entry.c console.c arch_mmu.c
