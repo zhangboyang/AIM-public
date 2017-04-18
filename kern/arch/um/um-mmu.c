@@ -1,8 +1,9 @@
 #include "config.h"
+
 #include "um-common.h"
 
-int main()
+void umMmInitPhysicalMemory(void)
 {
-    umKeKernelEntry();
-    return 0;
+    
 }
+

@@ -20,7 +20,7 @@
 AC_PREREQ([2.69])
 
 AC_INIT([AIM], [0.2], [davidgao1001@gmail.com])
-AM_INIT_AUTOMAKE([-Wall -Werror foreign])
+AM_INIT_AUTOMAKE([-Wall -Werror -Wno-portability foreign])
 AM_SILENT_RULES([yes])
 
 AC_CONFIG_MACRO_DIR([./m4])

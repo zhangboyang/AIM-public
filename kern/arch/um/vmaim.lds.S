@@ -41,7 +41,9 @@ SECTIONS
 	. = KERN_BASE + SIZEOF_HEADERS;
 
 	.text : {
+	    PROVIDE(ktext_start = .);
 		*(.text);
+		PROVIDE(ktext_end = .);
 	}
 
 	.data : {

@@ -20,12 +20,18 @@ include $(top_srcdir)/env.am
 dist_noinst_DATA = vmaim.lds.S
 
 noinst_LTLIBRARIES = \
-	libarch.la libentry.la
+	libarch.la libentry.la libum.la
 
 libarch_la_SOURCES = \
-    main.c
-libarch_la_CPPFLAGS = 
+    console.c arch_mmu.c
+libarch_la_LIBADD = libum.la
+
+libum_la_SOURCES = \
+    um-entry.c um-mmu.c um-debug.c
+
+libum_la_CPPFLAGS = $(patsubst -I%, -iquote%, $(filter-out -nostdinc, $(AM_CPPFLAGS)))
+
 
 libentry_la_SOURCES = \
-    entry.c console.c arch_mmu.c
+    entry.c
 

@@ -33,7 +33,7 @@ BUILT_SOURCES = vmaim.lds
 noinst_LTLIBRARIES = libkernel.la
 noinst_PROGRAMS = vmaim.elf
 nodist_noinst_DATA = vmaim.s
-CLEANFILES = boot.lds vmaim.s
+CLEANFILES = boot.lds vmaim.s vmaim.lds
 
 # This list should always be ordered carefully
 KERN_LIBS = \
