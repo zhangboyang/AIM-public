@@ -27,9 +27,9 @@ libarch_la_SOURCES = \
 libarch_la_LIBADD = libum.la
 
 libum_la_SOURCES = \
-    um-entry.c um-mmu.c um-debug.c
+    um-entry.c um-mmu.c um-debug.c um-worker.c um-sync.c
 
-libum_la_CPPFLAGS = $(patsubst -I%, -iquote%, $(filter-out -nostdinc, $(AM_CPPFLAGS)))
+libum_la_CPPFLAGS = -DCOMPILING_LIBUM $(patsubst -I%, -iquote%, $(filter-out -nostdinc, $(AM_CPPFLAGS)))
 
 
 libentry_la_SOURCES = \

@@ -1,17 +1,20 @@
-#include "config.h"
-#include <unistd.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <malloc.h>
-#include <assert.h>
 #include "um-common.h"
-
-
-
 
 static_assert(NR_CPUS <= MAX_CPUS, "too many cpus");
 
-
+void umKeWorkerEntry(int wrkid)
+{
+    if (wrkid == 0) { // master
+        umSyWaitSemaphore(&umKeMasterWorkerSemaphore);
+        fprintf(stdout, "  " c_green "master worker %d initialized." c_normal "\n", wrkid);
+    } else { // slave
+        umSyWaitSemaphore(&umKeSlaveWorkerSemaphore);
+        fprintf(stdout, "  " c_green "slave worker %d initialized." c_normal "\n", wrkid);
+if(wrkid==3)umKdKernelPanic("hahaha");
+    }
+    umSySignalSemaphore(&umKeSlaveWorkerSemaphore); // send semaphore to slave
+while(1);
+}
 
 void umKeKernelEntry(void)
 {
@@ -39,7 +42,11 @@ void umKeKernelEntry(void)
     // remap kernel executable
     umMmRemapExecutable();
     
+    // fork workers
+    umKeForkWorkers();
+    
     // exec monitor
     umKdExecMonitor();
+    exit(0);
 }
 
