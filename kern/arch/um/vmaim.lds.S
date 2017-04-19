@@ -36,6 +36,9 @@ ENTRY(_start)
 
 SECTIONS
 {
+    . = KERN_BASE;
+    PROVIDE(kstart = .);
+    
     // make sure KERN_BASE % align_in_readelf == 0, or VMA will be 0
     // make sure add SIZEOF_HEADERS, otherwise PHDR (i.e. FILEHDR) will be at wrong VMA
 	. = KERN_BASE + SIZEOF_HEADERS;
@@ -76,5 +79,12 @@ SECTIONS
       *(.rela.iplt)
       PROVIDE_HIDDEN (__rela_iplt_end = .);
     }
+    
+    .note : {
+		*(.note);
+	}
+	
+    . = ALIGN(4096);
+    PROVIDE(kend = .);
 }
 

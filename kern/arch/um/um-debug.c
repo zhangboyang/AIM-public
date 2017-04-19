@@ -1,8 +1,18 @@
 #include "config.h"
 #include <stdio.h>
+#include <stdlib.h>
 #include <unistd.h>
 #include <execinfo.h>
 #include "um-common.h"
+
+void umKdPrintMemoryMap(void)
+{
+    fputs("  " c_green "memory map:" c_normal "\n", stdout);
+    char cmdbuf[MAXLINE];
+    snprintf(cmdbuf, sizeof(cmdbuf), "pmap -p %d | sed 's/^/    /'", getpid());
+    system(cmdbuf);
+    fputs("\n", stdout);
+}
 
 void umKdPrintStackBacktrace(void)
 {
@@ -16,6 +26,7 @@ void umKdPrintStackBacktrace(void)
         int important = ktext_start <= fn && fn < ktext_end;
         fprintf(stdout, important ? "    " c_red "%s" c_normal "\n" : "    %s\n", bt[i]);
     }
+    fputs("\n", stdout);
 }
 
 void umKdKernelPanic(const char *msg)
@@ -28,7 +39,7 @@ void umKdKernelPanic(const char *msg)
     fprintf(stdout, "    " c_red "%s" c_normal "\n", msg);
     fputs("\n", stdout);
     umKdPrintStackBacktrace();
-    fputs("\n", stdout);
+    umKdPrintMemoryMap();
     fprintf(stdout, "  " c_blue "waiting for debugger (pid = %d) ..." c_normal "\n", getpid());
     while (1) pause();
 }
