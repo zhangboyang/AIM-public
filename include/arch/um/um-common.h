@@ -9,6 +9,7 @@
 #include <signal.h>
 #include <assert.h>
 #include <unistd.h>
+#include <errno.h>
 #include <execinfo.h>
 #include <malloc.h>
 #include <sys/mman.h>

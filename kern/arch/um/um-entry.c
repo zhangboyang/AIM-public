@@ -10,7 +10,9 @@ void umKeWorkerEntry(int wrkid)
     } else { // slave
         umSyWaitSemaphore(&umKeSlaveWorkerSemaphore);
         fprintf(stdout, "  " c_green "slave worker %d initialized." c_normal "\n", wrkid);
-if(wrkid==3)umKdKernelPanic("hahaha");
+//if(wrkid==3)umKdKernelPanic("hahaha");
+if(wrkid==3)*(int*)0=0;
+//if(wrkid==3)exit(0);
     }
     umSySignalSemaphore(&umKeSlaveWorkerSemaphore); // send semaphore to slave
 while(1);

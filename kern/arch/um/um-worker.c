@@ -2,15 +2,19 @@
 
 static pid_t worker[MAX_CPUS];
 
-int umKeGetCurrentWorkerId(void)
+int umKeGetWorkerIdByPid(pid_t pid)
 {
-    pid_t pid = getpid();
     for (int i = 0; i < NR_CPUS; i++) {
         if (worker[i] == pid) {
             return i;
         }
     }
     return -1;
+}
+
+int umKeGetCurrentWorkerId(void)
+{
+    return umKeGetWorkerIdByPid(getpid());
 }
 
 void umKeKillAllWorkers(int sig)
@@ -20,6 +24,11 @@ void umKeKillAllWorkers(int sig)
             kill(worker[i], sig);
         }
     }
+}
+
+void umKeRemoveWorker(int id)
+{
+    worker[id] = 0;
 }
 
 void umKeWaitAllWorkers(void)
